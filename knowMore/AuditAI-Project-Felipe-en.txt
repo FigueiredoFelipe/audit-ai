@@ -1,0 +1,34 @@
+Fullstack Project for Professional Portfolio
+=============================================
+
+📌 Project Name:
+AuditAI – Intelligent Auditing and Content Analysis Platform
+
+🧠 Strategic Description:
+AuditAI is a fullstack application that enables intelligent analysis of documents, messages, and URLs. It uses LLMs such as Google’s Gemini Pro to detect fraud patterns, contractual inconsistencies, legal risks, and offensive language. It’s ideal for HR, legal, and compliance teams. It includes secure authentication (OAuth 2.0 with Firebase), real-time updates via async API calls (WebSocket), a visual dashboard with geographic map (Mapbox), and an audit history stored in Firestore. It also integrates reCAPTCHA for security and financial statement parsing using a Fiserv mock.
+
+🎯 Alignment with Technical Requirements:
+This project covers all key technical requirements for a modern fullstack developer role, including:
+
+- TypeScript on the frontend (Angular) and backend (NestJS)
+- Redux-like state management (NgRx or Signal Store)
+- Custom Webpack configuration
+- REST APIs with OAuth 2.0 authorization flow
+- Asynchronous API calls with WebSocket
+- Authentication and database via Firebase Auth, Firestore, and Storage
+- Geographic visualization with Mapbox
+- Integrations with LLM (Gemini), Fiserv (mock), and Google reCAPTCHA
+- Testing with Jest and Cypress
+- CI/CD using GitHub Actions
+- Demonstrates modular architecture, technical leadership, SOLID principles, and PR/documentation best practices
+
+✅ Conclusion
+With this stack, you can deliver all of AuditAI’s features without spending a single dollar:
+
+- Frontend: Angular + Tailwind (Vercel or Netlify)
+- Backend: NestJS + Gemini Pro (Vercel or Render)
+- Auth + Storage + DB: Firebase (Auth + Firestore + Storage)
+- Map: Mapbox
+- Testing: Jest + Cypress
+- CI/CD: GitHub Actions
+- LLM: Gemini Pro Free Tier

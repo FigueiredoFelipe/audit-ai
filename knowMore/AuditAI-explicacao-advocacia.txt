@@ -1,0 +1,67 @@
+Como funciona o AuditAI – Exemplo prático para advogados
+========================================================
+
+🎯 Situação comum no escritório:
+Um cliente chega ao escritório trazendo diversos documentos:
+
+- Contratos (prestação de serviço, aluguel, parceria comercial)
+- Termos de uso de plataformas digitais
+- Prints de conversas (WhatsApp, e-mail)
+- Boletos e faturas
+- Notificações extrajudiciais
+- Links de sites suspeitos
+
+✅ O que o AuditAI faz com isso:
+
+1. Upload dos documentos
+O advogado ou estagiário digitaliza os arquivos e realiza o upload para o sistema AuditAI via interface web segura (com login via Firebase + reCAPTCHA).
+
+2. Análise automatizada com IA
+Os textos são processados por um modelo de linguagem (LLM – Gemini Pro), que identifica:
+
+- Linguagem ofensiva ou discriminatória (útil em ações trabalhistas e danos morais)
+- Cláusulas abusivas ou omissas (ex: ausência de foro ou limite de responsabilidade)
+- Inconsistências jurídicas em contratos
+- URLs suspeitas ou phishing
+- Diferenças entre contrato e cobrança (parser Fiserv aplicado ao boleto ou extrato)
+
+3. Resultados em formato prático
+O sistema organiza os insights por tipo de risco, gravidade e ação sugerida:
+
+| Tipo de risco         | Gravidade | Documento       | Ação sugerida              |
+|-----------------------|-----------|------------------|----------------------------|
+| Cláusula abusiva      | Alta      | contrato1.pdf    | Solicitar revisão ou ação |
+| Linguagem ofensiva    | Média     | conversa.jpeg    | Incluir no dossiê         |
+| Cobrança indevida     | Alta      | boleto_fev.png   | Contestar judicialmente   |
+
+4. Visualização geográfica
+Se o documento traz metadados de IP ou cidade, o sistema plota no mapa (Mapbox). Útil para:
+
+- Detectar padrões de golpe por região
+- Conectar casos semelhantes
+- Fornecer provas mais visuais
+
+5. Histórico automático
+Cada análise é salva com:
+- Nome do documento
+- Usuário que subiu
+- Data/hora
+- Resultado da IA
+
+Isso vira um registro para:
+- Consultas internas
+- Geração de relatórios ao cliente
+- Preparação de peças jurídicas
+
+📌 Benefícios diretos para o escritório
+
+- 🕒 Ganha tempo: triagem automatizada
+- 🧠 Mais estratégia: advogado se concentra no que importa
+- 📊 Profissionalismo: entrega técnica com embasamento
+- 🔍 Detecção proativa de riscos contratuais ou processuais
+- 🗂 Geração de histórico e padronização documental
+
+📈 Exemplo prático:
+Um contrato de prestação de serviço com cláusula de limitação ampla de responsabilidade é destacado como potencialmente nulo pela IA. Isso embasa a tese de responsabilização objetiva da contratada — algo que poderia passar despercebido.
+
+Ideal para escritórios que desejam escalar o atendimento mantendo qualidade técnica e produtividade.

@@ -1,0 +1,67 @@
+How AuditAI Works – Practical Use Case for Law Firms
+====================================================
+
+🎯 Common office scenario:
+A client walks into the law firm bringing various documents:
+
+- Contracts (service agreements, rental, commercial partnerships)
+- Terms of use from digital platforms
+- Chat screenshots (WhatsApp, email)
+- Invoices and bills
+- Extrajudicial notifications
+- Suspicious website links
+
+✅ What AuditAI does with this:
+
+1. Uploading documents
+The lawyer or intern scans and uploads all files into the AuditAI system through a secure web interface (login via Firebase + reCAPTCHA).
+
+2. Automated AI analysis
+The text content is processed by a language model (LLM – Gemini Pro), which identifies:
+
+- Offensive or discriminatory language (useful in labor lawsuits or moral damages)
+- Abusive or missing clauses (e.g., lack of jurisdiction or responsibility limits)
+- Legal inconsistencies in contracts
+- Suspicious or phishing URLs
+- Mismatches between contract and billing (Fiserv parser on invoice or statement)
+
+3. Actionable results
+The system organizes insights by risk type, severity, and suggested action:
+
+| Risk Type             | Severity | Document         | Suggested Action            |
+|-----------------------|----------|------------------|-----------------------------|
+| Abusive Clause        | High     | contract1.pdf    | Request revision or legal action |
+| Offensive Language    | Medium   | chat.jpeg        | Add to case file           |
+| Overbilling           | High     | invoice_feb.png  | Challenge legally          |
+
+4. Geographic visualization
+If the document contains IP or location metadata, the system maps it (Mapbox). Useful for:
+
+- Detecting scam patterns by region
+- Connecting similar cases
+- Presenting more visual evidence
+
+5. Automatic history log
+Each analysis is saved with:
+- Document name
+- User who uploaded
+- Date/time
+- AI result
+
+This creates a record for:
+- Internal review
+- Client reports
+- Drafting legal petitions
+
+📌 Direct benefits for the law firm
+
+- 🕒 Saves time: automated triage
+- 🧠 Focus on strategy: lawyers work on what matters most
+- 📊 Professionalism: structured and AI-backed delivery
+- 🔍 Proactive detection of contractual or legal risks
+- 🗂 Historical tracking and document standardization
+
+📈 Practical example:
+A service contract with a broad liability limitation clause is flagged by the AI as potentially null. This supports a case for strict liability against the contractor — a point that could have been missed manually.
+
+Ideal for law firms aiming to scale client service while maintaining legal quality and efficiency.
