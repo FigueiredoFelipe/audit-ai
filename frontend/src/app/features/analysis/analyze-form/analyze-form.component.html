@@ -1,0 +1,29 @@
+<div class="analyze-container">
+  <h2>Legal Analysis with AI</h2>
+
+  <label for="type">Type of analysis:</label>
+  <select id="type" [(ngModel)]="selectedType">
+    <option *ngFor="let option of analysisTypes" [value]="option.value">
+      {{ option.label }}
+    </option>
+  </select>
+
+  <label for="text">Text to be analyzed:</label>
+  <textarea
+    id="text"
+    rows="8"
+    [(ngModel)]="text"
+    placeholder="Paste contract clauses, conversations, or texts with potential offenses here..."
+  ></textarea>
+
+  <button (click)="submit()" [disabled]="loading || !text.trim()">
+    {{ loading ? "Analyzing..." : "Analyze" }}
+  </button>
+
+  <div *ngIf="result" class="result">
+    <h3>Result:</h3>
+    <pre>{{ result }}</pre>
+  </div>
+
+  <div *ngIf="error" class="error"><strong>Error:</strong> {{ error }}</div>
+</div>
