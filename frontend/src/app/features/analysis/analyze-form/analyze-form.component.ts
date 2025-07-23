@@ -55,4 +55,25 @@ export class AnalyzeFormComponent {
       this.loading = false;
     }
   }
+
+  highlightResult(text: string): string {
+    const lines = text.split('\n').map((line) => {
+      if (line.toLowerCase().includes('no risk')) {
+        return `✅ ${line}`;
+      } else if (
+        line.toLowerCase().includes('abusive') ||
+        line.toLowerCase().includes('critical')
+      ) {
+        return `⚠️ ${line}`;
+      } else if (
+        line.toLowerCase().includes('offensive') ||
+        line.toLowerCase().includes('insult')
+      ) {
+        return `❌ ${line}`;
+      }
+      return line;
+    });
+
+    return lines.join('\n');
+  }
 }
