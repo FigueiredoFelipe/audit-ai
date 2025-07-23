@@ -6,7 +6,6 @@ import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class LlmService {
   private readonly apiUrl =
-    // 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
     'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
   private readonly apiKey: string;
@@ -54,14 +53,14 @@ export class LlmService {
     content: string,
   ): string {
     const commonInstruction =
-      'Responda no mesmo idioma em que o conteúdo está escrito.';
+      'Respond in English, or in the language requested by the user.';
 
     const prompts = {
-      offensive: `Você é um assistente jurídico treinado para identificar linguagem ofensiva. Analise o seguinte texto e aponte se há trechos que contenham ofensas, xingamentos ou ataques pessoais. ${commonInstruction}\nTexto: """${content}"""`,
+      offensive: `You are a legal assistant trained to detect offensive language. Analyze the following text and indicate whether it contains insults, slurs, or personal attacks. ${commonInstruction}\nText: """${content}"""`,
 
-      clause: `Você é um especialista em Direito do Consumidor. Leia o seguinte contrato e aponte se há cláusulas abusivas ou desvantajosas para o consumidor, explicando por quê. ${commonInstruction}\nContrato: """${content}"""`,
+      clause: `You are a consumer law expert. Read the following contract and identify whether it contains abusive or disadvantageous clauses for the consumer, explaining why. ${commonInstruction}\nContract: """${content}"""`,
 
-      confession: `Você é um assistente jurídico treinado para identificar confissões ou autoincriminações em conversas. Analise a conversa a seguir e diga se há trechos que caracterizam confissão de culpa. ${commonInstruction}\nConversa: """${content}"""`,
+      confession: `You are a legal assistant trained to detect confessions or self-incriminating statements in conversations. Analyze the following conversation and determine whether any excerpts constitute an admission of guilt. ${commonInstruction}\nConversation: """${content}"""`,
     };
 
     return prompts[type];
@@ -86,13 +85,12 @@ export class LlmService {
 
       return (
         response.data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-        'Sem resposta do Gemini.'
+        'No response from Gemini.'
       );
     } catch (error) {
-      console.error('Erro Gemini:', error?.response?.data || error.message);
+      console.error('Gemini error:', error?.response?.data || error.message);
       throw new Error(
-        error?.response?.data?.error?.message ||
-          'Erro ao chamar a API do Gemini',
+        error?.response?.data?.error?.message || 'Failed to call Gemini API',
       );
     }
   }
