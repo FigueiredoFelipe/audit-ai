@@ -31,4 +31,22 @@
   </div>
 
   <div *ngIf="error" class="error"><strong>Error:</strong> {{ error }}</div>
+
+  <div *ngIf="history.length" class="history-container">
+    <h3>📚 Analysis History</h3>
+
+    <div *ngFor="let entry of history" class="history-entry">
+      <div class="history-header">
+        <span class="badge" [ngClass]="entry.type">
+          {{ getIcon(entry.type) }} {{ getLabel(entry.type) }}
+        </span>
+        <span class="timestamp">{{ formatDate(entry.timestamp) }}</span>
+        <button class="copy-button" (click)="copyToClipboard(entry.output)">
+          📋 Copy
+        </button>
+      </div>
+
+      <pre class="history-output">{{ highlightResult(entry.output) }}</pre>
+    </div>
+  </div>
 </div>

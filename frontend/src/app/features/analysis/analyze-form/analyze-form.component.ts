@@ -4,6 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AnalysisService } from '../analysis.service';
 
+interface AnalysisHistoryEntry {
+  type: string;
+  input: string;
+  output: string;
+  timestamp: Date;
+}
+
 @Component({
   selector: 'app-analyze-form',
   standalone: true,
@@ -23,6 +30,7 @@ export class AnalyzeFormComponent {
   loading = false;
   result = '';
   error = '';
+  history: AnalysisHistoryEntry[] = [];
 
   constructor(private analysisService: AnalysisService) {}
 
@@ -42,6 +50,12 @@ export class AnalyzeFormComponent {
           console.log('Analysis completed successfully', res);
           this.result = res.result;
           this.loading = false;
+          this.history.unshift({
+            type: this.selectedType,
+            input: this.text,
+            output: this.result,
+            timestamp: new Date(),
+          });
         },
         error: (err) => {
           console.error('Error during analysis:', err);
@@ -56,6 +70,7 @@ export class AnalyzeFormComponent {
     }
   }
 
+  // highlightResult function to add emojis to the result
   highlightResult(text: string): string {
     const lines = text.split('\n').map((line) => {
       if (line.toLowerCase().includes('no risk')) {
@@ -75,5 +90,43 @@ export class AnalyzeFormComponent {
     });
 
     return lines.join('\n');
+  }
+
+  // copyToClipboard function to copy the result to the clipboard
+  copyToClipboard(text: string): void {
+    navigator.clipboard.writeText(text).then(
+      () => console.log('Copied to clipboard'),
+      (err) => console.error('Failed to copy: ', err)
+    );
+  }
+
+  getIcon(type: string): string {
+    return (
+      {
+        offensive: '🚫',
+        clause: '⚠️',
+        confession: '🗣️',
+      }[type] || '❓'
+    );
+  }
+
+  getLabel(type: string): string {
+    return (
+      {
+        offensive: 'Offensive Language',
+        clause: 'Abusive Clauses',
+        confession: 'Confession in Conversation',
+      }[type] || '❓'
+    );
+  }
+
+  formatDate(date: Date): string {
+    return date.toLocaleString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
   }
 }
